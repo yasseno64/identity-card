@@ -7,10 +7,18 @@ body {
   background-color: #f0f0f0;
   font-family: Arial, sans-serif;
   background-image: linear-gradient(to bottom, rgb(109, 0, 0) 30%, black);
-  height: 100vh;
+  min-height: 100vh; /* تغيير height إلى min-height */
+  display: flex;       /* إضافة flex لتوسيط الكارد عمودياً */
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;  /* منع التمرير الأفقي */
 }
+
 .container {
-  margin: 50px auto;
+  margin: 0;           /* إزالة الهامش من الحاوية */
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .card {
   max-width: 400px;
@@ -54,11 +62,27 @@ body {
   height: 150px;
   border-radius: 50%;
   margin: 20px auto;
-  border: 6px dotted rgb(150, 16, 16);
   object-fit: cover;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  
+  /* Create the rainbow border effect */
+  padding: 6px; /* This padding creates the border space */
+  background: linear-gradient(45deg, #ff0000, #ff7300, #ffeb00, #47ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+  animation: rainbow-glow 3s linear infinite, float 3s ease-in-out infinite;
 }
 
+/* Rainbow rotation */
+@keyframes rainbow-glow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
 h1 {
   font-size: 32px;
   font-weight: bold;
@@ -105,4 +129,26 @@ i {
   box-shadow:
     0 0 20px #6a00f4,
     0 0 40px #240046;
+}
+.payment-btn{
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+  border-radius: 50px;
+  box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.payment-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+  background: linear-gradient(45deg, #47444b, #000000);
+}
+.payment-btn:active {
+  transform: translateY(-1px) scale(1);
 }
